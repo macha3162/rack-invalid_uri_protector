@@ -1,5 +1,4 @@
 require 'rack/invalid_uri_protector/version'
-
 module Rack
   class InvalidUriProtector
     SANITIZE_ENV_KEYS = %w(
@@ -15,8 +14,9 @@ module Rack
     end
 
     def call(env)
+      p '*' * 100
       SANITIZE_ENV_KEYS.each do |key|
-        string = env[key].to_s
+       p string = env[key].to_s
         valid = URI.decode(string).force_encoding('UTF-8').valid_encoding?
         # Don't accept requests with invalid byte sequence
         return [400, {}, ['Bad request']] unless valid

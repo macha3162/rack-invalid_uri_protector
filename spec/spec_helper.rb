@@ -1,4 +1,5 @@
 require "bundler/setup"
+require "rack/test"
 require "rack/invalid_uri_protector"
 
 RSpec.configure do |config|
