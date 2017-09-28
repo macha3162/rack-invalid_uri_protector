@@ -30,7 +30,7 @@ Gemfileに以下の行を加えます:
 Railsでは`application.rb`に以下のコードを追加してください:
 
 ``` ruby
-config.middleware.insert 0, Rack::InvalidUriProtector
+config.middleware.use Rack::InvalidUriProtector
 ```
 
 ## License
