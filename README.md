@@ -1,43 +1,40 @@
 # Rack::InvalidUriProtector
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/rack/invalid_uri_protector`. To experiment with that code, run `bin/console` for an interactive prompt.
+Rack::InvalidUriProtectorはRack/Ruby on Railsに対する無効なbyte sequenceアクセスからアプリケーションを守ります。
+ご自身のアプリケーションが次のリクエストに応答できるか、コピペしてアクセスしてみてください。
 
-TODO: Delete this and the text above, and describe your gem
+`/?%28t%B3odei%29`
+
+もし対策ができていなければ、次のエラーが出るはずです。
+
+```
+ArgumentError: invalid byte sequence in UTF-8
+```
+
+このライブラリでは、無効なbyte sequenceを含んだアクセスがあると、400 Bad requestを返します。
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Gemfileに以下の行を加えます:
 
-```ruby
-gem 'rack-invalid_uri_protector'
-```
+    gem 'rack-invalid_uri_protector'
 
-And then execute:
+そして次を実行します:
 
     $ bundle
 
-Or install it yourself as:
+または、個別にインストールすることも出来ます:
 
     $ gem install rack-invalid_uri_protector
 
-## Usage
+Railsでは`application.rb`に以下のコードを追加してください:
 
-TODO: Write usage instructions here
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/rack-invalid_uri_protector. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+``` ruby
+config.middleware.insert 0, Rack::InvalidUriProtector
+```
 
 ## License
 
-The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+Copyright Shigeki Masuda.
 
-## Code of Conduct
-
-Everyone interacting in the Rack::InvalidUriProtector project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/rack-invalid_uri_protector/blob/master/CODE_OF_CONDUCT.md).
+Released under an [MIT License](http://opensource.org/licenses/MIT).

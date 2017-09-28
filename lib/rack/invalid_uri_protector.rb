@@ -14,9 +14,8 @@ module Rack
     end
 
     def call(env)
-      p '*' * 100
       SANITIZE_ENV_KEYS.each do |key|
-       p string = env[key].to_s
+        string = env[key].to_s
         valid = URI.decode(string).force_encoding('UTF-8').valid_encoding?
         # Don't accept requests with invalid byte sequence
         return [400, {}, ['Bad request']] unless valid
