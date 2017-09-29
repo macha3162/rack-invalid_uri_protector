@@ -1,4 +1,5 @@
 # Rack::InvalidUriProtector
+[![Gem Version](https://badge.fury.io/rb/rack-invalid_uri_protector.svg)](https://badge.fury.io/rb/rack-invalid_uri_protector)
 
 Rack::InvalidUriProtectorはRack/Ruby on Railsに対する無効なbyte sequenceアクセスからアプリケーションを守ります。
 ご自身のアプリケーションが次のリクエストに応答できるか、コピペしてアクセスしてみてください。
